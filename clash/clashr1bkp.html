@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+{% extends 'base.html' %}
+{% block title %}QUESTIONS{% endblock %}
+<body>
+{% block body %}
+	<br>
+<form action="check" method="post">{% csrf_token %}
+		{{ q1.question }}
+	<br>
+	<input type="radio" name="Options" value="a" checked>{{q1.option_a}}<br>
+	<input type="radio" name="Options" value="b">{{q1.option_b}}<br>
+	<input type="radio" name="Options" value="c">{{q1.option_c}}<br>
+	<input type="radio" name="Options" value="d">{{q1.option_d}}<br>
+	<input type="checkbox" name="fibo">Fibo<br>
+	<input type="hidden" name="id" value="{{q1.id}}">
+	<input type="submit" name="submit">
+</form>
+<form action="skip" method="post">{% csrf_token %}
+    <input type="submit" name="skip" value="skip">
+    <input type="hidden" name="id" value="{{q1.id}}">
+</form>
+
+    <div>Score: {{request.user.players.total_score}}</div>
+    <div>Coins: {{request.user.players.coins}}</div>
+    <div>No. of questions right/3: {{request.user.players.coins_status}}</div>
+    <div>Fibos that can be used: {{request.user.players.f_counter}}</div>
+    <div>Marking scheme for fib: +{{request.user.players.fib_plus}}/-{{request.user.players.fib_minus}}</div>
+    <div>Correct ans: {{request.user.players.right_count}}</div>
+    <div>Wrong ans: {{request.user.players.wrong_count}}</div>
+{% endblock %}
+</body>
+</html>

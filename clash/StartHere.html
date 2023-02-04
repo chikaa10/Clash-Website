@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clash::Register</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href= "css/bootstrap.min.css" >
+    <link rel="stylesheet" href= "css/textfield.css" >
+    <link rel="stylesheet" href= "css/button.css" >
+    <link rel="stylesheet" href= "css/radiobutton.css">
+    <link rel="stylesheet" href= "css/sidebar.css">
+    <link rel="stylesheet" href= "css/card.css">
+
+    <style>
+        /*Set height of the grid so .sidenav can be 100% (adjust if needed) */
+
+        .image {
+            position: relative;
+            width: 100%;
+            /* for IE 6 */
+        }
+        .button1 {
+            background-color: #00c378;
+            box-shadow: 0 1px 4px #757575;
+            border: none;
+            width: 200px;
+            height: 50px;
+        }
+        .button1:active {
+          background-color: #0b9660;
+          box-shadow: 0 1px 4px #757575;
+        }
+
+        span {
+          display: block;
+          position: absolute;
+          transform: scale(0);
+          border-radius: 100%;
+          background: rgba(255, 255, 255, 0.5);
+        }
+
+        .row.content {
+            height: 665px;
+        }
+
+        #pisblogo {
+            height: 13%;
+            width: 95%;
+        }
+
+        .footer_row {
+            height: 35px;
+            padding-top: 5px;
+            background-color: black;
+            color: white;
+        }
+        /* Set gray background color and 100% height */
+
+        .sidenav {
+            height: 100%;
+        }
+        /* Set black background color, white text and some padding */
+
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+        }
+        /* On small screens, set height to 'auto' for sidenav and grid */
+
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+            .row.content {
+                height: auto;
+            }
+        }
+        #frntmsg
+        {
+            color: red;
+            
+        }
+    </style>
+</head>
+
+<body background= "math3.jpg" >
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color:rgba(0,0,0,0.4); box-shadow:1px 1px 1px gray">
+        <div class="container-row" style="margin-left:15px; margin-right:15px;">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="max-height:30px;">
+                <img src= "clash.png"  height=55px align="left">
+
+                <ul class="nav navbar-nav" style="font-size:20px; font-family:'Quicksand',sans-serif;">
+                    <li>
+                        <a>Register</a>
+                    </li>
+
+
+                </ul>
+                <img src= "pisb.png"  height=54px align="right">
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!--PAGE CONTENT-->
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-md-6 sidenav" style="padding-top:75px;">
+                <div class="image">
+                    <img src= "clash.png"  alt="" />
+                    <h1 style="position: absolute;padding-left:50%;top: 200px;left: 0; width: 100%;color:rgba(255,255,255,1);font-family: 'Quicksand', sans-serif; "><b>WELCOME<br>TO CLASH</h1></b>
+                </div>
+            </div>
+            <div class="col-md-6 reg" style="padding-top:50px;padding-top:9%;">
+              <div style="background-color:rgba(0,0,0,0.6); padding-left:30px; padding-bottom:30px; padding-top:5px; border-radius:7px; ">
+                <h1 style="color:#00fa9a; padding-left:30%; font-family: 'Quicksand', sans-serif;"><b>REGISTER</b></h1>
+                <form action="createuser" method="post"> 
+                    <div class="row" style="font-family:'Quicksand',sans-serif;">
+
+                        <div class="col-md-5 player1">
+                            <div class="form__group">
+                                <input type="text" id="name" name="Player1" class="form__field" placeholder="Player 1 Name" required pattern="[a-zA-Z\s]{1,}">
+                                <label for="name" class="form__label">Player 1 Name</label>
+                                <div class="bar"></div>
+                            </div>
+                            <div class="form__group">
+                                <input type="email" id="txtEmail" name="Player1email" class="form__field" placeholder="Player 1 Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title="Input should be of type example@example.com">
+                                <label for="email" class="form__label">Player 1 Email</label>
+                                <div class="bar"></div>
+                            </div>
+                            <div class="form__group">
+                                <input type="text" id="phno" name="Player1no" class="form__field" placeholder="Player 1 Phone Number" required pattern="[0-9]{10}" title="Input should be of 10 digits. Ex:- 9999999999">
+                                <label for="phno" class="form__label">Player 1 Phone Number</label>
+                                <div class="bar"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5 player2">
+                            <div class="form__group">
+                                <input type="name" id="name" name="Player2" class="form__field" placeholder="Player 2 Name" pattern="[a-zA-Z\s]{1,}">
+                                <label for="name" class="form__label">Player 2 Name</label>
+                                <div class="bar"></div>
+                            </div>
+                            <div class="form__group">
+                                <input type="email" id="email" name="Player2email" class="form__field" placeholder="Player 2 Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title=" Input should be of type example@example.com">
+                                <label for="email " class="form__label ">Player 2 Email</label>
+                                <div class="bar "></div>
+                            </div>
+                            <div class="form__group">
+                                <input type="phno " id="phno " name="Player2no" class="form__field " placeholder="Player 2 Phone Number">
+                                <label for="phno " class="form__label ">Player 2 Phone Number</label>
+                                <div class="bar "></div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 "></div>
+                    </div>
+                    <div class="row " style="padding-top:35spx; ">
+                        <div class="textbox" style="font-family: 'Quicksand', sans-serif;">
+                            <div class="form__group " style="padding-left:30%; padding-right:30%;">
+                                <input type="username " id="username " name="regusername" class="form__field " placeholder="Username " required>
+                                <label for="username " class="form__label ">Username</label>
+                                <div class="bar "></div>
+                            </div>
+                            <div class="form__group" style="padding-left:30%; padding-right:30%;">
+                                <input type="password" id="password" name="reguserpassword" class="form__field" placeholder="Password" required>
+                                <label for="password" class="form__label ">Password</label>
+                                <div class="bar "></div>
+                            </div>
+
+                        </div>
+                        <div style="padding-top:15px; font-family: 'Quicksand', sans-serif;">
+                            <div class="col-md-6 ig-control" style="padding-left:30%">
+                                <input name="LEVEL" value="0" type="radio" id="unchecked " class="ig-control__radio" checked/>
+                                <label for="unchecked ">Junior</label>
+                            </div>
+                            <div class="col-md-6 ig-control ">
+                                <input name="LEVEL" value="1" type="radio" id="checked" class="ig-control__radio" />
+                                <label for="checked">Senior</label>
+                            </div>
+
+                            <div type="submit" class="button">
+                                <input type="submit" class="button1" value="SUBMIT" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <h3 id="frntmsg">{{message}}</h3><!-- Frontend changes-->
+              </div>
+            </div>
+            <div class="col-md-12 footer_row" style="position:fixed; bottom:0; text-align:center;font-family: 'Quicksand', sans-serif;">
+                <p> Copyright© CREDENZ 16, PICT IEEE STUDENT BRANCH</p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

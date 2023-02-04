@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <title>Questions Page: Clash'16</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/questionsPageTemp.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/timerscript.js"></script>
+    <script src="js/questionsPageTemp.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+
+window.setTimeout("refresh()",1000);     //refresh() function will be called after 0.5 seconds   generally skip the word windows
+function refresh()
+
+{
+    // The XMLHttpRequest object is used to exchange data with a server behind the scenes. This means that it is possible to update parts of a web page, without reloading the whole page.  
+  var xmlhttp;
+  if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+    }
+  else
+    {// code for IE6, IE5
+    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+  xmlhttp.onreadystatechange=function()     //Stores a function (or the name of a function) to be called automatically each time the readyState property changes
+    {
+    if (xmlhttp.readyState==4 && xmlhttp.status==200)   // '4' means request finished and response is ready
+                                                        //  '200' ststus is OK
+                                                        // '404'    page not found
+      {
+        CreateTimer("timer",parseInt(xmlhttp.responseText));    //Calling the function CreateTimer and passing parameters
+      }
+    }
+  xmlhttp.open("GET","/time",true);         // open(method,url, async)  specifies the type of request
+  xmlhttp.send();       //sends the request to the server
+  return
+}
+</script>
+
+    <style>
+.button1 {
+            background-color: #00c378;
+            box-shadow: 0 1px 4px #757575;
+            border: none;
+            width: 200px;
+            height: 50px;
+            border-radius: 3px;
+            font-size: 20px;
+      color: black;
+      font-family: "Lora", sans-serif;
+        }
+        .button1:active {
+          background-color: #0b9660;
+          box-shadow: 0 1px 4px #757575;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            background-color: red;
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        footer {
+            position: fixed;
+            width: 100%;
+            height: 10px;
+            background: #505050;
+            bottom: 0;
+        }
+
+        .copy p {
+            margin: 0;
+            padding: 0;
+            line-height: 10px;
+            color: #fff;
+            text-align: center;
+        }
+
+        #piebg {
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            margin-left: 20px;
+            left: 0;
+        }
+
+        #pie13 {
+            height: 200px;
+            width: 200px;
+            position: fixed;
+            left: 0;
+            margin-left: 20px;
+        }
+
+        #pie23 {
+            height: 200px;
+            width: 200px;
+            position: fixed;
+            left: 0;
+            margin-left: 20px;
+        }
+
+        #pie33 {
+            height: 200px;
+            width: 200px;
+            position: fixed;
+            left: 0;
+            margin-left: 20px;
+        }
+        .footer_row {
+            height: 35px;
+            padding-top: 5px;
+            background-color: black;
+            color: white;
+        }
+
+        body {
+            background: url("math3.jpg");
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.4);
+            box-shadow: 1px 1px 1px grey;
+        }
+    </style>
+</head>
+
+<body onload="pie2();pie();refresh();fib_disable();skip_disable();noback();";>
+   <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <img src="clash.png" height=55px align="left">
+                <ul class="nav navbar-nav ">
+                    <li class="active"><a href="#" style="font-size:17px">Questions</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="width:550px">
+                    <li class="score-time" style="font-size:16px;">
+                       <b>Time:</b> <label class="STLabel" id="timer" style="padding-left:0px; margin-left:1px;">Time</label>
+                    </li>
+                    <li class="score-time">
+                        <label class="STLabel">Score:</label>
+                    </li>
+                    <li>
+                        <button class="button" onclick="dispmodal()" id="quitbutton">LogOut<span class="glyphicon glyphicon-log-out span"></span></button>
+                    </li>
+
+                      <img src="pisb.png" height=54px align="right">
+
+
+
+
+
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid text-center">
+        <div class="row content" id="row1">
+            <div class="col-lg-2 sidenav">
+                 <label id="fiboLabel" class="side-nav-btn">MagicFibo Attempts Left: </label>
+                <br>
+                <label for="tokenclass" class="side-nav-btn"><img class="tokenclass" src= "coin transparent.png"  style="height:30px;width:30px; float:left;">Coins: </label>
+                <p>
+                <form action="skip" method="post">
+                    <button type="submit" class="side-nav-btn" id="btn-shad">Hop-A-Question</button>
+                    <input type="hidden" name="id" value="{{q1.id}}">
+                </form>
+                </p>
+                <p>
+                    <button type="checkbox" value="1" class="side-nav-btn" id="btn-shad2" onclick="value1();value2();checkbor();">MagicFibonacci</button>
+                </p>
+                <p>
+                    <button class="side-nav-btn" id="btn-shad1">Instructions</button>
+                </p>
+                <div id="myModal" class="modal" >
+                    <div class="modal-content" >
+                        <span class="close" style="color:black;">×</span>
+                    <p id="text" style="font-family:courier; font-size:17px; position:absolute; padding-top:4%; padding-left:2%; padding-right:16%;color:white; background-color:rgba(0,0,0,0.9); margin-top:22px;"><u>FIRST ROUND:-</u>
+                    <br> Each team will start with 3 coins. The player will be awarded +2 coins for every 3 correct answers.
+                    <br>
+
+                    <u>LIFELINES:-</u>
+                    <br> # Hop-A-Question : Skip the question, at the cost of 1 coin.
+                    <br> # MagicFibonacci: At the cost of 2 coins, changes the original marking scheme to (+5,-3) for the current question, after which it gets disabled.<br> Second usage of the lifeline changes the marking
+                    scheme to (+8,-5), and third usage to (+13,-8) if the answers are right.<br> If lifeline is activated and the answer is wrong, marking scheme falls back to (+5,-3).<br>You can use this maximum 3 times<br>
+
+                    # Time Limit : 25 minutes.
+                    <br>
+                    <u>MARKING SCHEME:</u>
+                    <br> $ Correct answer: +4
+                    <br> $ Incorrect answer: -2
+                    <br>
+                    </p>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    window.history.forward();
+                    function noback()
+                    {
+                        window.history.forward();
+                    }
+                </script>
+                <script>
+                    var modal = document.getElementById('myModal');
+                    var btn = document.getElementById("btn-shad1");
+                    var span = document.getElementsByClassName("close")[0];
+                    btn.onclick = function() {
+                        modal.style.display = "block";
+                    }
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+                </script>
+                <div id="pieContainer">
+                    <img id="piebg" src= "Pie chart/chart.png" >
+                    <img src= "Pie chart/13.png"  id="pie13">
+                    <img id="pie23" src= "Pie chart/23.png" >
+                    <img src= "Pie chart/33.png"  id="pie33">
+                </div>
+            </div>
+            <div class="col-lg-6 text-left">
+                <div class="row">
+                <br>
+                <textarea id="text12" style="width:100%; height=100%" rows=20 disabled>{{q1.question}}</textarea>
+            </div>
+            </div>
+            <div class="col-lg-4 sidenav">
+                <form action="check" method="post">
+                    <div class="radio-holder">
+                        <p>
+                            <input type='radio' value='a' name='Options' id='radio1' checked>
+                            <label for='radio1' id="radio-label">{{q1.option_a}}</label>
+                        </p>
+
+                    </div>
+                    <div class="radio-holder">
+                        <p>
+                            <input type='radio' value='b' name='Options' id='radio2' />
+                            <label for='radio2' id="radio-label">{{q1.option_b}}</label>
+                        </p>
+                    </div>
+                    <div class="radio-holder">
+                        <p>
+                            <input type='radio' value='c' name='Options' id='radio3' />
+                            <label for='radio3' id="radio-label">{{q1.option_c}}</label>
+                        </p>
+                    </div>
+                    <div class="radio-holder">
+                        <p>
+                            <input type='radio' value='d' name='Options' id='radio4' />
+                            <label for='radio4' id="radio-label">{{q1.option_d}}</label>
+                        </p>
+                    </div>
+                    <input type="hidden" name="id" value="{{q1.id}}" hidden>
+                    <div class="radio-holder">
+                        <p>
+                            <input type="checkbox" style="visibility:hidden" name="fibo" id="radio5" />
+                        </p>
+                    </div>
+
+                    <div class="radio-holder">
+                    <p>
+                        <div type="submit" class="button">
+                                <input type="submit" class="button1" value="SUBMIT" onclick="pie()"; onclick="value2()"  >
+                            </div>
+                    </p>
+                        
+                    </div>
+                </form>
+                <script type="text/javascript">
+
+                window.onbeforeunload={function(){
+                    return false;
+                    }
+                };
+
+                function fib_disable(){
+                    if({{request.user.players.f_counter}}==0 || {{request.user.players.coins}}<=1){
+                        document.getElementById("btn-shad2").disabled=true;
+                        document.getElementById("btn-shad2").style.backgroundColor="#666666";
+                        document.getElementById("btn-shad").style.borderColor="#262626";
+                        document.getElementById("btn-shad").style.borderWidth="3px";
+                    }else{
+                        document.getElementById("btn-shad2").disabled=false;
+                        document.getElementById("btn-shad2").style.backgroundColor="#00c378";
+                    }
+                }
+
+                function skip_disable(){
+                    if({{request.user.players.coins}}<1){
+                        document.getElementById("btn-shad").disabled=true;
+                        document.getElementById("btn-shad").style.backgroundColor="#666666";
+                        document.getElementById("btn-shad").style.borderColor="#262626";
+                        document.getElementById("btn-shad").style.borderWidth="3px";
+                    }else{
+                        document.getElementById("btn-shad").disabled=false;
+                        document.getElementById("btn-shad").style.backgroundColor="#00c378";
+                    }
+                }
+
+                var fibobut= 0;
+
+                function value2()
+                {
+                    if(fibobut==0)
+                    {
+                        document.getElementById("radio5").checked=true;
+                        fibobut=1;
+                    }
+                    else{
+                        fibobut=0;
+                        document.getElementById("radio5").checked=false;
+                    }
+                    
+                }
+                var countf=0;
+                function checkbor()
+                {
+                    
+                    if(countf=='0')
+                    {
+                        var b=document.getElementById("btn-shad2");
+                        b.style.backgroundColor= "yellow";
+
+                    }
+                    if(countf=='1')
+                    {
+                     var b=document.getElementById("btn-shad2");
+                        b.style.backgroundColor= "#00c378";   
+                    }
+                    countf=!countf;
+
+                }
+                var forpie2= 0;
+                function pie2()
+                {
+                    if(forpie2==0){
+                	document.getElementById("piebg").hidden=true;
+                	document.getElementById("pie13").hidden=true;
+                	document.getElementById("pie23").hidden=true;
+                	document.getElementById("pie33").hidden=true;
+                    }
+                    forpie2=forpie2+1;
+
+
+               {
+             /* var elem = document.getElementById("myBar");   
+              var width = 100;
+              var id = setInterval(frame, 150);
+              var time= 10;
+              function frame() {
+                if (width <= 0) {
+                  clearInterval(id);
+                } else {
+                  width= width - 0.05;
+                  elem.style.width = width+'%';
+                }
+              }*/
+            
+			}
+                }
+                	var y= {{request.user.players.coins_status}}
+                	function pie()
+                	{
+                		if(y=='0')
+                		{
+                			document.getElementById("pie13").hidden= false;
+                		}
+                		if(y=='1')
+                		{
+                			document.getElementById("pie13").hidden= false;
+                			document.getElementById("pie23").hidden= false;
+                		}
+                		if(y=='2')
+                		{
+                			document.getElementById("pie13").hidden= false;
+                			document.getElementById("pie23").hidden= false;
+                			document.getElementById("pie33").hidden= false;
+                		}
+                		if (y=='3') 
+                		{
+                			document.getElementById("piebg").hidden=true;
+                	           document.getElementById("pie13").hidden=true;
+                	           document.getElementById("pie23").hidden=true;
+                	           document.getElementById("pie33").hidden=true;
+                		
+                		}
+
+                	}
+                </script>
+
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-12 footer_row" style="position:fixed; bottom:0; text-align:center;font-family: 'Quicksand', sans-serif;">
+        <p> Copyright© CREDENZ 16, PICT IEEE STUDENT BRANCH</p>
+    </div>
+
+    <div class="quit-modal" id="quitmodal">
+
+        <div align="center" class="quit-modal-content fadeInRight">
+            <header class="container" id="modal-head">
+                <h2 style="background:rgba(0,0,0,0.4)">Are You Sure?</h2></header>
+        <form action="logout" method="post">
+            <button type="submit" id="redirect-to-results" style="color:white; background:rgba(0,0,0,0.4)">Proceed To Results</button>
+        </form>
+            <button id="hide-modal" onclick="hidemodal()" style="color:white">Go Back To Questions</button>
+        </div>
+
+</body>
+
+</html>
